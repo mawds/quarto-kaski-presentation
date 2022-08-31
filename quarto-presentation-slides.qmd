@@ -5,6 +5,12 @@ date: 1 September 2022
 format: revealjs
 ---
 
+```{r}
+library(tidyverse)
+library(plotly)
+```
+
+
 ## Overview 
 
 - What is Quarto?
@@ -51,4 +57,38 @@ format: revealjs
 - New technology
   - Version 1 released July 2022
   - Was in beta for a long while
+
+## Demo 
+
+This presentation is written using Quarto
+
+Here is some R code, showing the code:
+
+```{r, echo=TRUE}
+1 + 1
+```
+
+And without
+
+```{r}
+1 + 1
+```
+
+## Graphs
+
+```{r}
+g <- mtcars %>% 
+  ggplot(aes(x = wt, y = mpg, colour = as.factor(cyl))) + 
+  geom_point()
+print(g)
+```
+
+## Interactive graphs
+
+Using [Plotly](https://plotly.com/r/)
+
+```{r}
+plotly::ggplotly(g)
+
+```
 
