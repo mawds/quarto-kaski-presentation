@@ -3,6 +3,7 @@ title: "Using Quarto to share and publish your research"
 author: "David Mawdsley"
 date: 1 September 2022
 format: revealjs
+jupyter: python3 
 ---
 
 ```{r}
@@ -91,4 +92,59 @@ Using [Plotly](https://plotly.com/r/)
 plotly::ggplotly(g)
 
 ```
+
+
+
+## Python
+
+Can do the same with Python:
+
+
+```{python}
+#| echo: true
+1 + 1
+```
+
+Or just the results:
+
+```{python}
+1 + 1
+```
+
+
+## Graphs
+
+Using matplotlib
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+
+
+N = 50
+x = np.random.rand(N)
+y = np.random.rand(N)
+colors = np.random.rand(N)
+area = (30 * np.random.rand(N))**2  # 0 to 15 point radii
+
+plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+plt.show()
+```
+
+
+## Plotly
+
+```{python}
+import plotly.express as px
+
+fig = px.scatter(x, y)
+
+fig.show()
+
+```
+
+
 
