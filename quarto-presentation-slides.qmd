@@ -3,16 +3,16 @@ title: "Using Quarto to share and publish your research"
 author: "David Mawdsley"
 date: 1 September 2022
 format: revealjs
-jupyter: python3 
 ---
 
-```{r}
-library(tidyverse)
-library(plotly)
-```
 
 
 ## Overview 
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(plotly)
+```
 
 - What is Quarto?
 - Advantages over Jupyter notebooks
@@ -53,11 +53,6 @@ library(plotly)
   - no chunks of unreadable json
   - Works better with version control
 
-## Risks/Issues
-
-- New technology
-  - Version 1 released July 2022
-  - Was in beta for a long while
 
 ## Demo 
 
@@ -135,7 +130,7 @@ plt.show()
 ```
 
 
-## Plotly
+## Plotly (Python)
 
 ```{python}
 import plotly.express as px
@@ -146,5 +141,25 @@ fig.show()
 
 ```
 
+## Other output formats
 
+- Journal articles:
 
+```
+quarto use template quarto-journals/acm
+```
+
+[Example article](acm_article/acm_article.pdf)
+
+## Risks/Issues
+
+- New technology
+  - Version 1 released July 2022
+  - Was in beta for a long while
+
+- Good to keep rendering time for `.qmd` to a minimum
+  - Easier development cycle
+  - Move slow artifacts out of document
+  - R: [Targets](https://books.ropensci.org/targets/)
+  - Python: [Ploomber](https://github.com/ploomber/ploomber)? / [Snakemake](https://snakemake.readthedocs.io/en/stable/)
+  
