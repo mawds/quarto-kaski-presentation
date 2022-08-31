@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "David Mawdsley",
+    "section": "",
+    "text": "David is an RSE at the university of Manchester"
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "David Mawdsley",
+    "section": "Education",
+    "text": "Education\nUniversity of Bath | Bath, UK PhD Phyiscs | 2003 - 2007\nUniversity of Sussex | Brigthon, UK MPhys Physics with Computational Physics | 1999 - 2003"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "David Mawdsley",
+    "section": "Experience",
+    "text": "Experience\nUniversity of Manchester | Research Software Engineer | May 2021 - present"
+  },
+  {
+    "objectID": "research/quickstart.html",
+    "href": "research/quickstart.html",
+    "title": "Python demo using ELFI",
+    "section": "",
+    "text": "Quickstart\nFirst ensure you have installed Python 3.5 (or greater) and ELFI. After installation you can start using ELFI:\n\n\nCode\nimport elfi\n\n\nELFI includes an easy to use generative modeling syntax, where the generative model is specified as a directed acyclic graph (DAG). Let’s create two prior nodes:\n\nwe use the code-fold option discussed above, so the user can always see this code\n\n\nmu = elfi.Prior('uniform', -2, 4)\nsigma = elfi.Prior('uniform', 1, 4)\n\nThe above would create two prior nodes, a uniform distribution from -2 to 2 for the mean mu and another uniform distribution from 1 to 5 for the standard deviation sigma. All distributions from scipy.stats are available.\nFor likelihood-free models we typically need to define a simulator and summary statistics for the data. As an example, lets define the simulator as 30 draws from a Gaussian distribution with a given mean and standard deviation. Let’s use mean and variance as our summaries:\n\n\nCode\nimport scipy.stats as ss\nimport numpy as np\n\ndef simulator(mu, sigma, batch_size=1, random_state=None):\n    mu, sigma = np.atleast_1d(mu, sigma)\n    return ss.norm.rvs(mu[:, None], sigma[:, None], size=(batch_size, 30), random_state=random_state)\n\ndef mean(y):\n    return np.mean(y, axis=1)\n\ndef var(y):\n    return np.var(y, axis=1)\n\n\nLet’s now assume we have some observed data y0 (here we just create some with the simulator):\n\n\nCode\n# Set the generating parameters that we will try to infer\nmean0 = 1\nstd0 = 3\n\n# Generate some data (using a fixed seed here)\nnp.random.seed(20170525) \ny0 = simulator(mean0, std0)\nprint(y0)\n\n\n[[ 3.7990926   1.49411834  0.90999905  2.46088006 -0.10696721  0.80490023\n   0.7413415  -5.07258261  0.89397268  3.55462229  0.45888389 -3.31930036\n  -0.55378741  3.00865492  1.59394854 -3.37065996  5.03883749 -2.73279084\n   6.10128027  5.09388631  1.90079255 -1.7161259   3.86821266  0.4963219\n   1.64594033 -2.51620566 -0.83601666  2.68225112  2.75598375 -6.02538356]]\n\n\nNow we have all the components needed. Let’s complete our model by adding the simulator, the observed data, summaries and a distance to our model:\n\n\nCode\n# Add the simulator node and observed data to the model\nsim = elfi.Simulator(simulator, mu, sigma, observed=y0)\n\n# Add summary statistics to the model\nS1 = elfi.Summary(mean, sim)\nS2 = elfi.Summary(var, sim)\n\n# Specify distance as euclidean between summary vectors (S1, S2) from simulated and\n# observed data\nd = elfi.Distance('euclidean', S1, S2)\n\n\nIf you have graphviz installed to your system, you can also visualize the model:\n\n\nCode\n# Plot the complete model (requires graphviz)\nelfi.draw(d)\n\n\n\n\n\n.. Note:: The automatic naming of nodes may not work in all environments e.g. in interactive Python shells. You can alternatively provide a name argument for the nodes, e.g. S1 = elfi.Summary(mean, sim, name='S1').\nWe can try to infer the true generating parameters mean0 and std0 above with any of ELFI’s inference methods. Let’s use ABC Rejection sampling and sample 1000 samples from the approximate posterior using threshold value 0.5:\n\n\nCode\nrej = elfi.Rejection(d, batch_size=10000, seed=30052017)\nres = rej.sample(1000, threshold=.5)\nprint(res)\n\n\nProgress [===-----------------------------------------------] 7.1% CompleteProgress [=======-------------------------------------------] 15.4% CompleteProgress [============--------------------------------------] 25.0% CompleteProgress [================----------------------------------] 33.3% CompleteProgress [====================------------------------------] 41.7% CompleteProgress [=======================---------------------------] 46.2% CompleteProgress [=============================---------------------] 58.3% CompleteProgress [=================================-----------------] 66.7% CompleteProgress [=====================================-------------] 75.0% Complete\n\n\nProgress [=========================================---------] 83.3% CompleteProgress [=============================================-----] 91.7% CompleteProgress [==================================================] 100.0% Complete\nMethod: Rejection\nNumber of samples: 1000\nNumber of simulations: 120000\nThreshold: 0.492\nSample means: mu: 0.748, sigma: 3.1\n\n\n\nLet’s plot also the marginal distributions for the parameters:\n\n\nCode\nimport matplotlib.pyplot as plt\nres.plot_marginals()\nplt.show()"
+  },
+  {
+    "objectID": "research/research1.html",
+    "href": "research/research1.html",
+    "title": "Example research",
+    "section": "",
+    "text": "This is an example of a research project.\nI did some stuff, loaded some data, plotted some graphs."
+  },
+  {
+    "objectID": "research/research1.html#overview",
+    "href": "research/research1.html#overview",
+    "title": "Example research",
+    "section": "Overview",
+    "text": "Overview\nThis is just a really brief demo of plotting a graph\n\nlibrary(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.3.6     ✔ purrr   0.3.4\n✔ tibble  3.1.8     ✔ dplyr   1.0.9\n✔ tidyr   1.2.0     ✔ stringr 1.4.0\n✔ readr   2.1.2     ✔ forcats 0.5.2\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n\n\n\niris %>% \nggplot(aes(x = Sepal.Length, y = Petal.Length, colour = Species )) +\ngeom_point()\n\n\n\n\nWe learned some interesting things"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Example website",
+    "section": "",
+    "text": "This is an example website. We can link to other pages, like the one about research"
+  },
+  {
+    "objectID": "example_website.html",
+    "href": "example_website.html",
+    "title": "example_website",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "Example research\n\n\n\n\n\nAn example research project\n\n\n\n\n \n\n\n\n\n  \n\n\n\n\nPython demo using ELFI\n\n\n\n\n\n\n\n\n\n\n\n\nJun 1, 2022\n\n\nELFI\n\n\n\n\n\n\nNo matching items"
+  }
+]

@@ -1,0 +1,33 @@
+---
+title: "Example research"
+description: "An example research project"
+format: html
+---
+
+
+This is an example of a research project.
+
+I did some stuff, loaded some data, plotted some graphs.
+
+## Overview
+
+This is just a really brief demo of plotting a graph
+
+
+
+```{r}
+
+library(tidyverse)
+
+```
+
+
+
+```{r}
+iris %>% 
+ggplot(aes(x = Sepal.Length, y = Petal.Length, colour = Species )) +
+geom_point()
+
+```
+
+We learned some interesting things

@@ -1,0 +1,27 @@
+---
+title: "David Mawdsley"
+format: html
+about:
+    template: jolla
+    image: self.jpg
+    links:
+        - icon: github
+          text: Github
+          href: https://www.github.com/mawds
+
+---
+
+David is an RSE at the university of Manchester
+
+## Education
+
+University of Bath | Bath, UK
+PhD Phyiscs | 2003 - 2007
+
+University of Sussex | Brigthon, UK
+MPhys Physics with Computational Physics | 1999 - 2003
+
+## Experience
+
+University of Manchester | Research Software Engineer | May 2021 - present
+

@@ -1,0 +1,23 @@
+project:
+  title: "example_website"
+  type: website
+website: 
+  navbar: 
+    background: primary
+    search: true
+    left:
+      - text: "Home"
+        file: index.qmd
+      - research.qmd
+      - text: "About"
+        file: about.qmd
+
+
+
+
+
+
+
+
+
+

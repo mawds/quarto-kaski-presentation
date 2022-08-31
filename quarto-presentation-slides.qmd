@@ -151,6 +151,13 @@ quarto use template quarto-journals/acm
 
 [Example article](acm_article/acm_article.pdf)
 
+- Website:
+
+[Example website](example_website/_site/index.html)
+
+
+
+
 ## Risks/Issues
 
 - New technology

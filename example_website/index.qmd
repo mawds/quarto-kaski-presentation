@@ -1,0 +1,8 @@
+---
+title: "Example website"
+format: html
+---
+
+This is an example website.  We can link to other pages, like the one about [research](research.html)
+
+
