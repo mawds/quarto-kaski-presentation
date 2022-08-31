@@ -1,0 +1,54 @@
+---
+title: "Using Quarto to share and publish your research"
+author: "David Mawdsley"
+date: 1 September 2022
+format: revealjs
+---
+
+## Overview 
+
+- What is Quarto?
+- Advantages over Jupyter notebooks
+- Output formats
+- Demo
+
+## What is Quarto?
+
+- Combine text content and executable code into:
+  - Presentations (e.g. this :-)
+  - Websites
+  - Journal articles
+  - Books
+- Supports multiple languages
+  - Python
+  - R
+  - Julia
+  
+
+
+## What is Quarto? (2)
+
+- Supports multiple output formats:
+  - PDF
+  - HTML
+  - Word (`.docx`)
+  - Powerpoint (`.pptx`)
+  - epub
+
+## Benefits over Jupyter notebooks
+
+- Can produce anything between:
+  - All text, hidden code (i.e. a paper, a web page)
+  - All the code visible (i.e. a Jupyter notebook)
+- `.qmd` document is human readable
+  - Markdown and code delimiters
+  - Results are not embedded in the `.qmd` document; only in the output
+  - no chunks of unreadable json
+  - Works better with version control
+
+## Risks/Issues
+
+- New technology
+  - Version 1 released July 2022
+  - Was in beta for a long while
+
