@@ -2,7 +2,9 @@
 title: "Using Quarto to share and publish your research"
 author: "David Mawdsley"
 date: 1 September 2022
-format: revealjs
+format: 
+  revealjs:
+    theme: default 
 ---
 
 
@@ -167,6 +169,14 @@ quarto use template quarto-journals/acm
 - Good to keep rendering time for `.qmd` to a minimum
   - Easier development cycle
   - Move slow artifacts out of document
-  - R: [Targets](https://books.ropensci.org/targets/)
-  - Python: [Ploomber](https://github.com/ploomber/ploomber)? / [Snakemake](https://snakemake.readthedocs.io/en/stable/)
+    - R: [Targets](https://books.ropensci.org/targets/)
+    - Python: [Ploomber](https://github.com/ploomber/ploomber) / [Snakemake](https://snakemake.readthedocs.io/en/stable/)
+    
+## Summary
+
+- Flexible way of sharing and presenting your work
+- Including code with text means they stay in sync
+- Works well with version control
+
+
   
