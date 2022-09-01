@@ -24,7 +24,7 @@ library(plotly)
 ## What is Quarto?
 
 - Combine text content and executable code into:
-  - Presentations (e.g. this :-)
+  - Presentations (e.g. this)
   - Websites
   - Journal articles
   - Books
@@ -165,6 +165,7 @@ quarto use template quarto-journals/acm
 - New technology
   - Version 1 released July 2022
   - Was in beta for a long while
+  - Based on (well proven) RMarkdown and Pandoc
 
 - Good to keep rendering time for `.qmd` to a minimum
   - Easier development cycle
@@ -177,6 +178,7 @@ quarto use template quarto-journals/acm
 - Flexible way of sharing and presenting your work
 - Including code with text means they stay in sync
 - Works well with version control
+- A nice evolution of the Jupyter notebook
 
 
   
