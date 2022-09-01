@@ -1,0 +1,168 @@
+---
+title: "Using Quarto to share and publish your research"
+author: "David Mawdsley"
+date: 1 September 2022
+format: 
+  revealjs:
+    theme: default 
+---
+
+## Overview
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(plotly)
+```
+
+-   What is Quarto?
+-   Advantages over Jupyter notebooks
+-   Output formats
+-   Demo
+
+## What is Quarto?
+
+-   Combine text content and executable code into:
+    -   Presentations (e.g. this)
+    -   Websites
+    -   Journal articles
+    -   Books
+-   Supports multiple languages
+    -   Python
+    -   R
+    -   Julia
+
+## What is Quarto? (2)
+
+-   Supports multiple output formats:
+    -   PDF
+    -   HTML
+    -   Word (`.docx`)
+    -   Powerpoint (`.pptx`)
+    -   epub
+
+## Benefits over Jupyter notebooks
+
+-   Can produce anything between:
+    -   All text, hidden code (i.e. a paper, a web page)
+    -   All the code visible (i.e. a Jupyter notebook)
+-   `.qmd` document is human readable
+    -   Markdown and code delimiters
+    -   Results are not embedded in the `.qmd` document; only in the output
+    -   no chunks of unreadable json
+    -   Works better with version control
+
+## Demo
+
+This presentation is written using Quarto
+
+Here is some R code, showing the code:
+
+```{r, echo=TRUE}
+1 + 1
+```
+
+And without
+
+```{r}
+1 + 1
+```
+
+## Graphs
+
+```{r}
+g <- mtcars %>% 
+  ggplot(aes(x = wt, y = mpg, colour = as.factor(cyl))) + 
+  geom_point()
+print(g)
+```
+
+## Interactive graphs
+
+Using [Plotly](https://plotly.com/r/)
+
+```{r}
+plotly::ggplotly(g)
+
+```
+
+## Python
+
+Can do the same with Python:
+
+```{python}
+#| echo: true
+1 + 1
+```
+
+Or just the results:
+
+```{python}
+1 + 1
+```
+
+## Graphs
+
+Using matplotlib
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Fixing random state for reproducibility
+np.random.seed(19680801)
+
+
+N = 50
+x = np.random.rand(N)
+y = np.random.rand(N)
+colors = np.random.rand(N)
+area = (30 * np.random.rand(N))**2  # 0 to 15 point radii
+
+plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+plt.show()
+```
+
+## Plotly (Python)
+
+```{python}
+import plotly.express as px
+
+fig = px.scatter(x, y)
+
+fig.show()
+
+```
+
+## Other output formats
+
+-   Journal articles:
+
+```{=html}
+<!-- -->
+```
+    quarto use template quarto-journals/acm
+
+[Example article](acm_article/acm_article.pdf)
+
+-   Website:
+
+[Example website](example_website/_site/index.html)
+
+## Risks/Issues
+
+-   New technology
+    -   Version 1 released July 2022
+    -   Was in beta for a long while
+    -   Based on (well proven) RMarkdown and Pandoc
+-   Good to keep rendering time for `.qmd` to a minimum
+    -   Easier development cycle
+    -   Move slow artifacts out of document
+        -   R: [Targets](https://books.ropensci.org/targets/)
+        -   Python: [Ploomber](https://github.com/ploomber/ploomber) / [Snakemake](https://snakemake.readthedocs.io/en/stable/)
+
+## Summary
+
+-   Flexible way of sharing and presenting your work
+-   Including code with text means they stay in sync
+-   Works well with version control
+-   A nice evolution of the Jupyter notebook
